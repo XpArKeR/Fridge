@@ -8,7 +8,7 @@ package Enumerables;
 
 /**
  *
- * @author noldi
+ * @author XpArKeR
  */
 public class Enumerables 
 {

@@ -24,10 +24,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <Component id="ScrollPanel" min="-2" pref="734" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-          </Group>
+          <Component id="ScrollPanel" min="-2" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -46,8 +43,13 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="ArticlePanel" max="32767" attributes="0"/>
-                  <Component id="ArticleLinePanel" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="ArticlePanel" alignment="0" max="32767" attributes="0"/>
+                          <Component id="ArticleLinePanel" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -77,34 +79,25 @@
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
+                              <Component id="ArticleCategoryLabel" max="32767" attributes="0"/>
+                              <Component id="ArticleDescriptionLabel" alignment="0" min="-2" pref="250" max="-2" attributes="0"/>
+                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                                   <Component id="ArticleIDLabel" max="32767" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="ArticleIDTextField" min="-2" pref="380" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="ArticleNameLabel" pref="317" max="32767" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="ArticleNameTextField" min="-2" pref="380" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Component id="ArticleDescriptionLabel" max="32767" attributes="0"/>
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <Component id="ArticleCategoryLabel" max="32767" attributes="0"/>
-                                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="ArticleCategoryComboBox" max="32767" attributes="0"/>
-                                      <Component id="ArticleDescriptionTextField" pref="380" max="32767" attributes="0"/>
-                                  </Group>
+                                  <Component id="ArticleNameLabel" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace min="9" pref="9" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="ArticleCategoryComboBox" max="32767" attributes="0"/>
+                                  <Component id="ArticleDescriptionTextField" min="-2" pref="380" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="103" alignment="0" groupAlignment="0" attributes="0">
+                                  <Component id="ArticleNameTextField" alignment="1" min="-2" pref="380" max="-2" attributes="0"/>
+                                  <Component id="ArticleIDTextField" alignment="1" min="-2" pref="380" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -206,41 +199,27 @@
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
+                              <Component id="ArticleLineExpiryDateLabel" alignment="0" max="32767" attributes="0"/>
+                              <Component id="ArticleLineWeightLabel" alignment="1" max="32767" attributes="0"/>
+                              <Component id="ArticleLineShopLabel" alignment="1" max="32767" attributes="0"/>
+                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="ArticleLineAmountLabel" max="32767" attributes="0"/>
                                   <Component id="ArticleLineDescriptionLabel" max="32767" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="ArticleLineDescriptionTextField" min="-2" pref="380" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="ArticleLineAmountLabel" pref="317" max="32767" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="ArticleLineAmountTextField" min="-2" pref="380" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <Component id="ArticleLineExpiryDateLabel" max="32767" attributes="0"/>
-                                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" attributes="0">
-                                              <Component id="ArticleLineWeightLabel" max="32767" attributes="0"/>
-                                              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="ArticleLineShopLabel" min="-2" pref="213" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="ArticleLineWeightTextField" alignment="0" pref="380" max="32767" attributes="0"/>
-                                      <Component id="ArticleLineShopComboBox" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="ArticleLineExpiryDateTextField" alignment="0" pref="380" max="32767" attributes="0"/>
-                                  </Group>
                               </Group>
                           </Group>
-                          <EmptySpace min="9" pref="9" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="ArticleLineWeightTextField" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="ArticleLineShopComboBox" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="ArticleLineExpiryDateTextField" alignment="0" min="-2" pref="380" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="103" alignment="0" groupAlignment="0" attributes="0">
+                                  <Component id="ArticleLineDescriptionTextField" alignment="1" min="-2" pref="380" max="-2" attributes="0"/>
+                                  <Component id="ArticleLineAmountTextField" alignment="1" min="-2" pref="380" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -272,7 +251,7 @@
                               <Component id="ArticleLineShopLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="ArticleLineShopComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="19" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -314,6 +293,11 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="ArticleLineWeightTextField">
+                  <Properties>
+                    <Property name="inputVerifier" type="javax.swing.InputVerifier" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new DecimalInputVerifier()" type="code"/>
+                    </Property>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="ArticleLineExpiryDateLabel">
                   <Properties>

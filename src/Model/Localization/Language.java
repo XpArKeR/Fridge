@@ -1,4 +1,4 @@
-package Model.Locale;
+package Model.Localization;
 
 import Model.*;
 import java.util.ArrayList;

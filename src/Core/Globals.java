@@ -13,17 +13,7 @@ public class Globals
     public static LocalizationCore LanguageEngine = new LocalizationCore();
     
     public static Database Database = new Database();
-    
-    public static enum StatusType
-    {
-        OK,BAD,CRITICAL,INFO                
-    }
-    
-    public static enum ItemMode 
-    {
-        IN, OUT
-    }
-    
+        
     private static String _FilePath = "";
     
     public static boolean IsNumeric(String value)

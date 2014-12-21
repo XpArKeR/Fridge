@@ -3,7 +3,7 @@ package Core;
 import Model.Article.Shop;
 import Views.MainView;
 
-public class FridgeV3 
+public class Fridge 
 {
     public static void main(String[] args) 
     {

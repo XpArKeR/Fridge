@@ -19,6 +19,8 @@ import Model.Views.BaseView;
 import Views.Article.AddArticleDialog;
 
 import java.awt.Rectangle;
+import java.util.Arrays;
+import javax.jws.WebParam;
 import javax.swing.JFrame;
 import javax.swing.border.TitledBorder;
 
@@ -29,6 +31,8 @@ import javax.swing.border.TitledBorder;
  */
 public class MainView extends JFrame implements BaseView
 {
+    private final String[] ValidCommands = {"ping"};
+    
     private ItemMode CurrentItemMode = ItemMode.OUT;
     private Setting HeightSetting;
     private Setting WidthSetting;
@@ -44,9 +48,11 @@ public class MainView extends JFrame implements BaseView
         
         this.SetMode(CurrentItemMode);
         OutModeRadioButton.setSelected(true);
+        
+        this.BarcodeInputField.requestFocus();
     }
         
-    //@Override
+    @Override
     public void LoadSettings()
     {
         PosXSetting = Settings.GetProperty("MainWindow.Position.X");
@@ -90,7 +96,7 @@ public class MainView extends JFrame implements BaseView
         );
     }
     
-    //@Override
+    @Override
     public void LoadLocalization()
     {
         /***** Mode Box *****/
@@ -127,6 +133,7 @@ public class MainView extends JFrame implements BaseView
         }
         
         this.CurrentItemMode = newMode;
+        this.BarcodeInputField.requestFocus();
     }
     
     private void LoadInMode()
@@ -140,24 +147,54 @@ public class MainView extends JFrame implements BaseView
     }
     
     private void DecideAction(String input)
-    {
-        switch (input)
+    {        
+        if (IsCommand(input))
         {
-            default:
-               SearchArticle(input);
+        //    handleCommand(arguments)            
         }
+        else
+        {        
+            SearchArticle(input);
+        }        
     }   
     
     private void SearchArticle(String input)
     {
         Barcode barcode = new Barcode();
                 
+        // Checks the Database if the Barcode is known. If it is, it will load the related article.
         barcode.Exists(input, true);
-        
-        AddArticleDialog addArticleDialog = new AddArticleDialog(this, true, barcode);
+                    
+        switch(this.CurrentItemMode)
+        {
+            case IN:
+                AddArticleDialog addArticleDialog = new AddArticleDialog(this, true, barcode);
+
+                addArticleDialog.setVisible(true);
+                break;
                 
-        addArticleDialog.setVisible(true);        
+            case OUT:
+                
+                break;
+        }
     }
+    
+    private boolean IsCommand(String input)
+    {
+        String[] arguments = input.split(" ");
+        
+        if (arguments.length > 1)
+        {
+            return true;
+        }
+        else if (Arrays.asList(ValidCommands).contains(input))
+        {
+           return true;
+        }
+        
+        return false;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -176,12 +213,12 @@ public class MainView extends JFrame implements BaseView
         BarcodePanel = new javax.swing.JPanel();
         BarcodeInputField = new javax.swing.JTextField();
         BarcodeLabel = new javax.swing.JLabel();
-        InputTypeSeperator = new javax.swing.JSeparator();
         StatusPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Fridge V3");
         setName("BaseView"); // NOI18N
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -226,13 +263,12 @@ public class MainView extends JFrame implements BaseView
                 .addComponent(InModeRadioButton)
                 .addGap(114, 114, 114)
                 .addComponent(OutModeRadioButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(204, Short.MAX_VALUE))
         );
         ModePanelLayout.setVerticalGroup(
             ModePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ModePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(InModeRadioButton)
-                .addComponent(OutModeRadioButton))
+            .addComponent(InModeRadioButton)
+            .addComponent(OutModeRadioButton)
         );
 
         BarcodePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Add / Remove Article"));
@@ -251,27 +287,25 @@ public class MainView extends JFrame implements BaseView
         BarcodePanel.setLayout(BarcodePanelLayout);
         BarcodePanelLayout.setHorizontalGroup(
             BarcodePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(InputTypeSeperator)
             .addGroup(BarcodePanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(BarcodeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BarcodeInputField, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         BarcodePanelLayout.setVerticalGroup(
             BarcodePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BarcodePanelLayout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(BarcodePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BarcodeInputField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BarcodeLabel))
-                .addGap(18, 18, 18)
-                .addComponent(InputTypeSeperator, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(20, 20, 20))
         );
 
         StatusPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        StatusPanel.setFocusable(false);
         StatusPanel.setName("StatusPanel"); // NOI18N
 
         javax.swing.GroupLayout StatusPanelLayout = new javax.swing.GroupLayout(StatusPanel);
@@ -282,24 +316,24 @@ public class MainView extends JFrame implements BaseView
         );
         StatusPanelLayout.setVerticalGroup(
             StatusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 31, Short.MAX_VALUE)
+            .addGap(0, 26, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout ContentPanelLayout = new javax.swing.GroupLayout(ContentPanel);
         ContentPanel.setLayout(ContentPanelLayout);
         ContentPanelLayout.setHorizontalGroup(
             ContentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(StatusPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(BarcodePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(ModePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(BarcodePanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(StatusPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         ContentPanelLayout.setVerticalGroup(
             ContentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ContentPanelLayout.createSequentialGroup()
+            .addGroup(ContentPanelLayout.createSequentialGroup()
                 .addComponent(ModePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BarcodePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(BarcodePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(StatusPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -313,7 +347,9 @@ public class MainView extends JFrame implements BaseView
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(ScrollPanel)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(ScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 3, Short.MAX_VALUE))
         );
 
         pack();
@@ -374,7 +410,6 @@ public class MainView extends JFrame implements BaseView
     private javax.swing.JPanel BarcodePanel;
     private javax.swing.JPanel ContentPanel;
     private javax.swing.JRadioButton InModeRadioButton;
-    private javax.swing.JSeparator InputTypeSeperator;
     private javax.swing.ButtonGroup ModeButtonGroup;
     private javax.swing.JPanel ModePanel;
     private javax.swing.JRadioButton OutModeRadioButton;
