@@ -65,6 +65,11 @@ public class Database
             System.out.println("Successfully connected to "+ this.Server);
         }
         
+        if (success)
+        {
+            System.out.println("Successfully connected to "+ this.Server);
+        }
+        
         return success;
     }
     
