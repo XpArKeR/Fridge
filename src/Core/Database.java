@@ -7,9 +7,10 @@
 package Core;
 
 import Core.Helper.SQLHelper;
-import Model.Article.Category;
-import Model.Article.Shop;
 import Model.CoreObject;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -31,7 +32,7 @@ public class Database
     
     private String GetConnectionString()
     {
-        return "jdbc:mysql://" + this.Server + "/" + this.DatabaseName;
+        return "jdbc:mysql://" + this.Server + "/" + this.DatabaseName + "?allowMultiQueries=true";
     }
     
     public Boolean Initialize()
@@ -102,6 +103,34 @@ public class Database
         return success;
     }
     
+    public void CheckVersion()
+    {        
+        double databaseVersion = 0.0;
+        
+        ResultSet queryResult = this.Query("SELECT Value FROM Settings WHERE PropertyName = 'DatabaseVersion'");
+        
+        if (queryResult != null)
+        {
+            try 
+            {
+                while (queryResult.next()) 
+                {       
+                    databaseVersion = queryResult.getDouble("Value");
+                    break;
+                }                
+            }
+            catch (SQLException e)  
+            {
+                System.out.println(e.getMessage());
+            }
+        }
+        
+        if (databaseVersion < Globals.DatabaseVersion)
+        {
+            UpdateDatabase();
+        }
+    }
+    
     public Connection GetConnection()
     {
         Connection connection = null;
@@ -133,7 +162,6 @@ public class Database
             System.out.println(e.getMessage());
             return false;
         }
-
     }
     
     public ResultSet Query(String query)
@@ -329,5 +357,36 @@ public class Database
     public <T> List<T> LoadAll(Class<T> type)
     {
         return this.LoadAll(type, null);
+    }
+    
+    private void UpdateDatabase()
+    {
+        String filePath = Files.GetFilePath(Files.DatabaseFile);
+    
+        File databaseFile = new File(filePath);
+        
+        if (databaseFile.exists())
+        {        
+            try
+            {            
+                FileInputStream fileInputstream = new FileInputStream(databaseFile);
+                
+                byte[] data = new byte[(int) databaseFile.length()];
+                
+                fileInputstream.read(data);
+                fileInputstream.close();
+
+                String sqlContent = new String(data, "UTF-8");
+                
+                if (!sqlContent.isEmpty())
+                {
+                    Globals.Database.ExecuteStatement(sqlContent);
+                }
+            }
+            catch (IOException exception)
+            {
+                FridgeV3.Log("Couln't read Database sql file....");
+            }
+        }
     }
 }

@@ -27,6 +27,8 @@ public class FridgeV3
         {
             System.out.println("Connection successfully established");            
                         
+            Globals.Database.CheckVersion();
+            
             MainView mainView = new MainView();
             
             mainView.LoadSettings();
@@ -35,4 +37,9 @@ public class FridgeV3
             mainView.setVisible(true);            
         }        
     }    
+    
+    public static void Log(String message)
+    {
+        System.out.println(message);
+    }
 }

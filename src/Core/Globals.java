@@ -9,7 +9,9 @@ import java.sql.Date;
  * @author XpArKeR
  */
 public class Globals 
-{
+{    
+    public static double DatabaseVersion = 1.0;
+    
     public static LocalizationCore LanguageEngine = new LocalizationCore();
     
     public static Database Database = new Database();
