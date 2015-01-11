@@ -122,7 +122,7 @@ public class Database
     {        
         double databaseVersion = 0.0;
         
-        ResultSet queryResult = this.Query("SELECT Value FROM Settings WHERE PropertyName = 'DatabaseVersion'");
+        ResultSet queryResult = this.Query("SELECT Value FROM settings WHERE PropertyName = 'DatabaseVersion'");
         
         if (queryResult != null)
         {
@@ -130,7 +130,9 @@ public class Database
             {
                 while (queryResult.next()) 
                 {       
-                    databaseVersion = queryResult.getDouble("Value");
+                    String version = queryResult.getString("Value");
+                    
+                    databaseVersion = Double.parseDouble(version);
                     break;
                 }                
             }
@@ -317,8 +319,7 @@ public class Database
         }
         
         return exists;
-    }
-    
+    }   
     
     public <T> List<T> LoadAll(Class<T> type, CoreObject loadFor)
     {
@@ -396,6 +397,8 @@ public class Database
                 if (!sqlContent.isEmpty())
                 {
                     Globals.Database.ExecuteStatement(sqlContent);
+                    
+                    Globals.Database.ExecuteStatement("INSERT INTO settings (ID, PropertyName, Value) VALUES (UUID(), 'DatabaseVersion', '" + Globals.DatabaseVersion + "');");
                 }
             }
             catch (IOException exception)

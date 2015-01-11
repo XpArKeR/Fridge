@@ -40,3 +40,10 @@ CREATE TABLE IF NOT EXISTS `shops` (
   `Description` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `settings` (
+  `ID` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `PropertyName` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Value` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;

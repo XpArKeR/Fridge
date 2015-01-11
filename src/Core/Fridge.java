@@ -26,7 +26,8 @@ public class Fridge
         if (Globals.Database.Initialize())
         {
             System.out.println("Connection successfully established");            
-                        
+            Globals.Database.CheckVersion();            
+            
             MainView mainView = new MainView();
             
             mainView.LoadSettings();
