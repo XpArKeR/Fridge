@@ -55,6 +55,11 @@ public class Database
             }
         }
         
+        if (success)
+        {
+            System.out.println("Successfully connected to "+ this.Server);
+        }
+        
         return success;
     }
     
@@ -385,7 +390,7 @@ public class Database
             }
             catch (IOException exception)
             {
-                FridgeV3.Log("Couln't read Database sql file....");
+                Fridge.Log("Couln't read Database sql file....");
             }
         }
     }

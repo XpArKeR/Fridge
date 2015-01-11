@@ -1,7 +1,7 @@
 package Localization;
 
 import Core.Globals;
-import Model.Locale.Language;
+import Model.Localization.Language;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FilenameFilter;

@@ -3,7 +3,7 @@ package Core;
 import Model.Article.Shop;
 import Views.MainView;
 
-public class FridgeV3 
+public class Fridge 
 {
     public static void main(String[] args) 
     {
@@ -27,8 +27,6 @@ public class FridgeV3
         {
             System.out.println("Connection successfully established");            
                         
-            Globals.Database.CheckVersion();
-            
             MainView mainView = new MainView();
             
             mainView.LoadSettings();

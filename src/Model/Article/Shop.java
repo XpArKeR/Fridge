@@ -47,4 +47,15 @@ public class Shop extends CoreObject
                 return super.GetProperty(property);                
         }
     }
+    
+    @Override
+    public String toString()
+    {
+        if (!this.Name.isEmpty())
+        {
+            return this.Name;
+        }
+        
+        return super.toString();
+    }
 }
