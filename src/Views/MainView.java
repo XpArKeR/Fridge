@@ -17,10 +17,11 @@ import Model.Article.Barcode;
 import Model.Configuration.Setting;
 import Model.Views.BaseView;
 import Views.Article.AddArticleDialog;
+import java.awt.Dimension;
 
 import java.awt.Rectangle;
+import java.awt.Toolkit;
 import java.util.Arrays;
-import javax.jws.WebParam;
 import javax.swing.JFrame;
 import javax.swing.border.TitledBorder;
 
@@ -61,8 +62,8 @@ public class MainView extends JFrame implements BaseView
         {
             PosXSetting = new Setting("MainWindow.Position.X", 300);
             Settings.SetProperty(PosXSetting);
-        } 
-        
+        }
+                
         PosYSetting = Settings.GetProperty("MainWindow.Position.Y");
         
         if (PosYSetting == null)
@@ -87,12 +88,31 @@ public class MainView extends JFrame implements BaseView
             Settings.SetProperty(HeightSetting);
         }
         
+        int positionX = Integer.parseInt(PosXSetting.Value.toString());   // X
+        int positionY = Integer.parseInt(PosYSetting.Value.toString());   // Y
+        int uiWidth = Integer.parseInt(WidthSetting.Value.toString());  // Width
+        int uiHeight = Integer.parseInt(HeightSetting.Value.toString());  // Height
+        
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        double width = screenSize.getWidth();
+        double height = screenSize.getHeight();
+        
+        if ((positionX + uiWidth) > width)
+        {
+            positionX = 300;
+        }
+        
+        if ((positionY + uiHeight) > height)
+        {
+            positionY = 300;
+        }
+        
         this.setBounds
         (
-                Integer.parseInt(PosXSetting.Value.toString()),   // X
-                Integer.parseInt(PosYSetting.Value.toString()),   // Y
-                Integer.parseInt(WidthSetting.Value.toString()),  // Width
-                Integer.parseInt(HeightSetting.Value.toString())  // Height
+                positionX,   // X
+                positionY,   // Y
+                uiWidth,  // Width
+                uiHeight  // Height
         );
     }
     

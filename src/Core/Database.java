@@ -38,7 +38,7 @@ public class Database
     public Boolean Initialize()
     {
         Boolean success = true;
-        
+        System.out.println(Globals.Database.DatabaseName);
         if (this.Server.isEmpty() || this.DatabaseName.isEmpty() || this.Username.isEmpty())
         {
             success = false;
@@ -341,25 +341,30 @@ public class Database
 
                 ResultSet resultSet = this.Query(query);
 
-                try
+                if (resultSet != null)
                 {
-                    while (resultSet.next())
-                    {          
-                        CoreObject newItem = (CoreObject)type.newInstance();
-                        
-                        for (String field : coreObject.DatabaseFieldNames)
-                        {
-                            newItem.SetProperty(field, resultSet.getObject(field));
+                    try
+                    {
+                        while (resultSet.next())
+                        {          
+                            CoreObject newItem = (CoreObject)type.newInstance();
+
+                            for (String field : coreObject.DatabaseFieldNames)
+                            {
+                                newItem.SetProperty(field, resultSet.getObject(field));
+                            }
+
+                            returnValue.add((T)newItem);
                         }
-                        
-                        returnValue.add((T)newItem);
+
                     }
+                    catch (SQLException exception)
+                    {
 
-                }
-                catch (SQLException exception)
-                {
-
-                }
+                    }
+                    catch (Exception exception)
+                    {}
+                }                
             }
         }
         catch(InstantiationException | IllegalAccessException exception)
