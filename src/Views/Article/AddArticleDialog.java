@@ -13,6 +13,8 @@ import Model.Article.Barcode;
 import Model.Article.Category;
 import Model.Article.Shop;
 import Model.Views.BaseView;
+import Views.Category.ManageCategoriesDialog;
+import java.awt.Frame;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.border.TitledBorder;
@@ -43,6 +45,7 @@ public class AddArticleDialog extends javax.swing.JDialog implements BaseView
     
     public AddArticleDialog(java.awt.Frame parent, boolean modal, Barcode barcode) 
     {
+        
         this(parent, modal);
         
         this.SetBarcode(barcode);
@@ -136,6 +139,9 @@ public class AddArticleDialog extends javax.swing.JDialog implements BaseView
         ArticleLineExpiryDateTextField = new javax.swing.JTextField();
         ArticleLineShopLabel = new javax.swing.JLabel();
         ArticleLineShopComboBox = new javax.swing.JComboBox();
+        SaveArticleButton = new javax.swing.JButton();
+        ManageCategoriesButton = new javax.swing.JButton();
+        AddShopButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -287,6 +293,17 @@ public class AddArticleDialog extends javax.swing.JDialog implements BaseView
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        SaveArticleButton.setText("Save");
+
+        ManageCategoriesButton.setText("Add Category");
+        ManageCategoriesButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ManageCategoriesButtonActionPerformed(evt);
+            }
+        });
+
+        AddShopButton.setText("Add Shop");
+
         javax.swing.GroupLayout ContentPanelLayout = new javax.swing.GroupLayout(ContentPanel);
         ContentPanel.setLayout(ContentPanelLayout);
         ContentPanelLayout.setHorizontalGroup(
@@ -296,6 +313,14 @@ public class AddArticleDialog extends javax.swing.JDialog implements BaseView
                     .addComponent(ArticlePanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(ArticleLinePanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ContentPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(ManageCategoriesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(AddShopButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(SaveArticleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         ContentPanelLayout.setVerticalGroup(
             ContentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -303,7 +328,12 @@ public class AddArticleDialog extends javax.swing.JDialog implements BaseView
                 .addComponent(ArticlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ArticleLinePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addGroup(ContentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ManageCategoriesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AddShopButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SaveArticleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         ScrollPanel.setViewportView(ContentPanel);
@@ -325,6 +355,12 @@ public class AddArticleDialog extends javax.swing.JDialog implements BaseView
     private void ArticleLineShopComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ArticleLineShopComboBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ArticleLineShopComboBoxActionPerformed
+
+    private void ManageCategoriesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManageCategoriesButtonActionPerformed
+        ManageCategoriesDialog manageCategoriesDialog = new ManageCategoriesDialog((Frame)this.getParent(), true);        
+        
+        manageCategoriesDialog.setVisible(true);        
+    }//GEN-LAST:event_ManageCategoriesButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -369,6 +405,7 @@ public class AddArticleDialog extends javax.swing.JDialog implements BaseView
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AddShopButton;
     private javax.swing.JComboBox ArticleCategoryComboBox;
     private javax.swing.JLabel ArticleCategoryLabel;
     private javax.swing.JLabel ArticleDescriptionLabel;
@@ -390,6 +427,8 @@ public class AddArticleDialog extends javax.swing.JDialog implements BaseView
     private javax.swing.JTextField ArticleNameTextField;
     private javax.swing.JPanel ArticlePanel;
     private javax.swing.JPanel ContentPanel;
+    private javax.swing.JButton ManageCategoriesButton;
+    private javax.swing.JButton SaveArticleButton;
     private javax.swing.JScrollPane ScrollPanel;
     // End of variables declaration//GEN-END:variables
 }
