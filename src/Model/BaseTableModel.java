@@ -6,7 +6,9 @@
 
 package Model;
 
+import java.util.ArrayList;
 import java.util.List;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
 
 /**
@@ -15,44 +17,39 @@ import javax.swing.table.TableModel;
  */
 public abstract class BaseTableModel implements TableModel
 {
-    protected List<?> tableItems;
+    protected List<? extends CoreObject> tableItems = new ArrayList<>();
     
-    protected String[] columnNames;
-    protected Object[][] dataArray;
+    protected String[] columnNames = new String[]{};
+    protected Object[][] dataArray = new Object[0][0];
             
-    public BaseTableModel(List<?> items)
+    public BaseTableModel(List<? extends CoreObject> items)
     {        
-        if (items != null)
-        {
-            if (CoreObject.class.isAssignableFrom(items.getClass()))
+        if ((items != null) && (items.size() > 0))
+        {            
+            this.tableItems = items;
+
+            for (int counter = 0; counter < items.size(); counter++)            
             {
-                this.tableItems = items;
-                
-                this.dataArray = new Object[items.size()][];
+                int propertyCounter = 0;
 
-                for (int counter = 0; counter >= items.size(); counter++)            
+                CoreObject category = (CoreObject)items.get(counter);
+
+                if ((this.columnNames == null) || (this.columnNames.length == 0))
                 {
-                    int propertyCounter = 0;
-
-                    CoreObject category = (CoreObject)items.get(counter);
-
-                    if ((this.columnNames == null) || (this.columnNames.length == 0))
-                    {
-                        this.columnNames = category.DatabaseFieldNames;
-                    }
-
-                    for (String propertyName : this.columnNames)
-                    {
-                        this.dataArray[counter][propertyCounter] = category.GetProperty(propertyName);
-                        propertyCounter++;
-                    }
+                    this.columnNames = category.DatabaseFieldNames;
                 }
-            }
-        }
-        else
-        {
-            this.dataArray = new Object[0][];
-        }
+
+                this.dataArray = new Object[items.size()][columnNames.length];
+                
+                for (String propertyName : this.columnNames)
+                {
+                    
+                    
+                    this.dataArray[counter][propertyCounter] = category.GetProperty(propertyName);
+                    propertyCounter++;
+                }
+            }            
+        }        
     }
     
     @Override
@@ -86,5 +83,22 @@ public abstract class BaseTableModel implements TableModel
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         return this.dataArray[rowIndex][columnIndex];
+    }
+    
+    @Override
+    public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
+        CoreObject coreObject = (CoreObject)this.tableItems.get(rowIndex);
+        
+        coreObject.SetProperty(this.columnNames[columnIndex], aValue);
+    }
+    
+    @Override
+    public void addTableModelListener(TableModelListener l) {
+        
+    }
+
+    @Override
+    public void removeTableModelListener(TableModelListener l) {
+        
     }
 }

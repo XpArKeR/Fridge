@@ -7,8 +7,8 @@
 package Views.Management;
 
 import Core.Globals;
-import Model.Article.Category;
-import Model.Article.Tables.CategoryTableModel;
+import Model.Article.Shop;
+import Model.Article.Tables.ShopTableModel;
 import Model.Views.BaseView;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,13 +18,13 @@ import javax.swing.border.TitledBorder;
  *
  * @author noldi
  */
-public class ManageCategoriesDialog extends javax.swing.JDialog implements BaseView
+public class ManageShopsDialog extends javax.swing.JDialog implements BaseView
 {    
-    private List<Category> Categories = new ArrayList<>();
+    private List<Shop> Shops = new ArrayList<>();
     /**
      * Creates new form AddArticleDialog
      */
-    public ManageCategoriesDialog(java.awt.Frame parent, boolean modal) 
+    public ManageShopsDialog(java.awt.Frame parent, boolean modal) 
     {
         super(parent, modal);
         initComponents();
@@ -60,12 +60,12 @@ public class ManageCategoriesDialog extends javax.swing.JDialog implements BaseV
     
     private void FillValues()
     {
-        for (Category category : Globals.Database.LoadAll(Category.class))
+        for (Shop shop : Globals.Database.LoadAll(Shop.class))
         {
-            this.Categories.add(category);            
+            this.Shops.add(shop);            
         }
         
-        this.CategoryTable.setModel(new CategoryTableModel(this.Categories));
+        this.CategoryTable.setModel(new ShopTableModel(this.Shops));
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -94,7 +94,7 @@ public class ManageCategoriesDialog extends javax.swing.JDialog implements BaseV
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
-        ArticlePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Category"));
+        ArticlePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Shop"));
 
         CategoryIDLabel.setLabelFor(CategoryIDTextField);
         CategoryIDLabel.setText("ID");
@@ -241,14 +241,18 @@ public class ManageCategoriesDialog extends javax.swing.JDialog implements BaseV
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ManageCategoriesDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManageShopsDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ManageCategoriesDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManageShopsDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ManageCategoriesDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManageShopsDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ManageCategoriesDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManageShopsDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -257,7 +261,7 @@ public class ManageCategoriesDialog extends javax.swing.JDialog implements BaseV
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ManageCategoriesDialog dialog = new ManageCategoriesDialog(new javax.swing.JFrame(), true);
+                ManageShopsDialog dialog = new ManageShopsDialog(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

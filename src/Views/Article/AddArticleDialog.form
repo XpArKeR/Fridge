@@ -54,7 +54,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="ManageCategoriesButton" min="-2" pref="118" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="AddShopButton" min="-2" pref="118" max="-2" attributes="0"/>
+                      <Component id="ManageShopsButton" min="-2" pref="118" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="SaveArticleButton" min="-2" pref="118" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -70,7 +70,7 @@
                       <EmptySpace pref="18" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="ManageCategoriesButton" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
-                          <Component id="AddShopButton" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
+                          <Component id="ManageShopsButton" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
                           <Component id="SaveArticleButton" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -356,16 +356,19 @@
             </Component>
             <Component class="javax.swing.JButton" name="ManageCategoriesButton">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Add Category"/>
+                <Property name="text" type="java.lang.String" value="Categories"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ManageCategoriesButtonActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="AddShopButton">
+            <Component class="javax.swing.JButton" name="ManageShopsButton">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Add Shop"/>
+                <Property name="text" type="java.lang.String" value="Shops"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ManageShopsButtonActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

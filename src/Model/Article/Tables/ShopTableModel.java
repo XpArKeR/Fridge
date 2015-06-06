@@ -6,7 +6,7 @@
 
 package Model.Article.Tables;
 
-import Model.Article.Category;
+import Model.Article.Shop;
 import Model.BaseTableModel;
 
 import java.util.List;
@@ -15,10 +15,10 @@ import java.util.List;
  *
  * @author noldi
  */
-public class CategoryTableModel extends BaseTableModel
+public class ShopTableModel extends BaseTableModel
 {    
-    public CategoryTableModel(List<Category> categories)
+    public ShopTableModel(List<Shop> shops)
     {    
-        super(categories);       
+        super(shops);       
     }    
 }

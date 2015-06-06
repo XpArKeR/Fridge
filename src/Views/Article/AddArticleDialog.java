@@ -14,6 +14,7 @@ import Model.Article.Category;
 import Model.Article.Shop;
 import Model.Views.BaseView;
 import Views.Management.ManageCategoriesDialog;
+import Views.Management.ManageShopsDialog;
 import java.awt.Frame;
 import java.util.ArrayList;
 import java.util.List;
@@ -141,7 +142,7 @@ public class AddArticleDialog extends javax.swing.JDialog implements BaseView
         ArticleLineShopComboBox = new javax.swing.JComboBox();
         SaveArticleButton = new javax.swing.JButton();
         ManageCategoriesButton = new javax.swing.JButton();
-        AddShopButton = new javax.swing.JButton();
+        ManageShopsButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -295,14 +296,19 @@ public class AddArticleDialog extends javax.swing.JDialog implements BaseView
 
         SaveArticleButton.setText("Save");
 
-        ManageCategoriesButton.setText("Add Category");
+        ManageCategoriesButton.setText("Categories");
         ManageCategoriesButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ManageCategoriesButtonActionPerformed(evt);
             }
         });
 
-        AddShopButton.setText("Add Shop");
+        ManageShopsButton.setText("Shops");
+        ManageShopsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ManageShopsButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout ContentPanelLayout = new javax.swing.GroupLayout(ContentPanel);
         ContentPanel.setLayout(ContentPanelLayout);
@@ -317,7 +323,7 @@ public class AddArticleDialog extends javax.swing.JDialog implements BaseView
                 .addContainerGap()
                 .addComponent(ManageCategoriesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(AddShopButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ManageShopsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(SaveArticleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -331,7 +337,7 @@ public class AddArticleDialog extends javax.swing.JDialog implements BaseView
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(ContentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ManageCategoriesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AddShopButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ManageShopsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(SaveArticleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -361,6 +367,12 @@ public class AddArticleDialog extends javax.swing.JDialog implements BaseView
         
         manageCategoriesDialog.setVisible(true);        
     }//GEN-LAST:event_ManageCategoriesButtonActionPerformed
+
+    private void ManageShopsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManageShopsButtonActionPerformed
+        ManageShopsDialog manageShopsDialog = new ManageShopsDialog((Frame)this.getParent(), true);        
+        
+        manageShopsDialog.setVisible(true);
+    }//GEN-LAST:event_ManageShopsButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -405,7 +417,6 @@ public class AddArticleDialog extends javax.swing.JDialog implements BaseView
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton AddShopButton;
     private javax.swing.JComboBox ArticleCategoryComboBox;
     private javax.swing.JLabel ArticleCategoryLabel;
     private javax.swing.JLabel ArticleDescriptionLabel;
@@ -428,6 +439,7 @@ public class AddArticleDialog extends javax.swing.JDialog implements BaseView
     private javax.swing.JPanel ArticlePanel;
     private javax.swing.JPanel ContentPanel;
     private javax.swing.JButton ManageCategoriesButton;
+    private javax.swing.JButton ManageShopsButton;
     private javax.swing.JButton SaveArticleButton;
     private javax.swing.JScrollPane ScrollPanel;
     // End of variables declaration//GEN-END:variables
