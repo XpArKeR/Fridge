@@ -13,7 +13,7 @@ import Model.Article.Barcode;
 import Model.Article.Category;
 import Model.Article.Shop;
 import Model.Views.BaseView;
-import Views.Category.ManageCategoriesDialog;
+import Views.Management.ManageCategoriesDialog;
 import java.awt.Frame;
 import java.util.ArrayList;
 import java.util.List;

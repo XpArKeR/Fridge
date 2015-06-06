@@ -4,15 +4,12 @@
  * and open the template in the editor.
  */
 
-package Views.Category;
+package Views.Management;
 
-import Views.Article.*;
 import Core.Globals;
-import Core.Helper.DecimalInputVerifier;
-import Model.Article.Article;
 import Model.Article.Barcode;
 import Model.Article.Category;
-import Model.Article.Shop;
+import Model.Article.Tables.CategoryTableModel;
 import Model.Views.BaseView;
 import java.util.ArrayList;
 import java.util.List;
@@ -73,6 +70,8 @@ public class ManageCategoriesDialog extends javax.swing.JDialog implements BaseV
         {
             this.Categories.add(category);            
         }
+        
+        this.CategoryTable.setModel(new CategoryTableModel(this.Categories));
     }
     /**
      * This method is called from within the constructor to initialize the form.
