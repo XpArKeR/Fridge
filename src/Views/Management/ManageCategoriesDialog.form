@@ -48,7 +48,9 @@
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" attributes="0">
                               <Component id="DeleteSelectedCategoryButton" min="-2" pref="118" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="440" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="ClearFieldsButton" min="-2" pref="118" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="304" max="-2" attributes="0"/>
                               <Component id="SaveSelectedCategoryButton" min="-2" pref="118" max="-2" attributes="0"/>
                           </Group>
                           <Component id="CategoryTableScrollPane" alignment="1" min="-2" pref="676" max="-2" attributes="0"/>
@@ -71,6 +73,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="SaveSelectedCategoryButton" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
                           <Component id="DeleteSelectedCategoryButton" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
+                          <Component id="ClearFieldsButton" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="CategoryTableScrollPane" min="-2" pref="185" max="-2" attributes="0"/>
@@ -179,6 +182,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ok"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="OkButtonActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="DeleteSelectedCategoryButton">
               <Properties>
@@ -215,6 +221,14 @@
                 </Component>
               </SubComponents>
             </Container>
+            <Component class="javax.swing.JButton" name="ClearFieldsButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Clear"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ClearFieldsButtonActionPerformed"/>
+              </Events>
+            </Component>
           </SubComponents>
         </Container>
       </SubComponents>

@@ -12,7 +12,10 @@ import Model.Article.Tables.CategoryTableModel;
 import Model.Views.BaseView;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.ListSelectionModel;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 /**
  *
@@ -20,6 +23,7 @@ import javax.swing.border.TitledBorder;
  */
 public class ManageCategoriesDialog extends javax.swing.JDialog implements BaseView
 {    
+    public Category SelectedCategory;
     private List<Category> Categories = new ArrayList<>();
     /**
      * Creates new form AddArticleDialog
@@ -65,6 +69,33 @@ public class ManageCategoriesDialog extends javax.swing.JDialog implements BaseV
             this.Categories.add(category);            
         }
         
+        ListSelectionModel selectionModel = this.CategoryTable.getSelectionModel();
+        
+        selectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+                
+        selectionModel.addListSelectionListener(new ListSelectionListener() 
+        {
+            public void valueChanged(ListSelectionEvent e) 
+            {
+                // Ignore extra messages.
+                if (e.getValueIsAdjusting())
+                {
+                    return;
+                }
+                
+                ListSelectionModel listSelectionModel = (ListSelectionModel) e.getSource();
+                if (listSelectionModel.isSelectionEmpty()) 
+                {
+                    System.out.println("No rows are selected.");
+                } 
+                else 
+                {
+                    int selectedRow = listSelectionModel.getMinSelectionIndex();
+                    System.out.println("Row " + selectedRow + " is now selected.");                    
+                }
+            }
+        });
+                
         this.CategoryTable.setModel(new CategoryTableModel(this.Categories));
     }
     /**
@@ -90,6 +121,7 @@ public class ManageCategoriesDialog extends javax.swing.JDialog implements BaseV
         SaveSelectedCategoryButton = new javax.swing.JButton();
         CategoryTableScrollPane = new javax.swing.JScrollPane();
         CategoryTable = new javax.swing.JTable();
+        ClearFieldsButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -146,6 +178,11 @@ public class ManageCategoriesDialog extends javax.swing.JDialog implements BaseV
         );
 
         OkButton.setText("Ok");
+        OkButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OkButtonActionPerformed(evt);
+            }
+        });
 
         DeleteSelectedCategoryButton.setText("Delete");
         DeleteSelectedCategoryButton.addActionListener(new java.awt.event.ActionListener() {
@@ -170,6 +207,13 @@ public class ManageCategoriesDialog extends javax.swing.JDialog implements BaseV
         ));
         CategoryTableScrollPane.setViewportView(CategoryTable);
 
+        ClearFieldsButton.setText("Clear");
+        ClearFieldsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ClearFieldsButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout ContentPanelLayout = new javax.swing.GroupLayout(ContentPanel);
         ContentPanel.setLayout(ContentPanelLayout);
         ContentPanelLayout.setHorizontalGroup(
@@ -179,7 +223,9 @@ public class ManageCategoriesDialog extends javax.swing.JDialog implements BaseV
                 .addGroup(ContentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(ContentPanelLayout.createSequentialGroup()
                         .addComponent(DeleteSelectedCategoryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(440, 440, 440)
+                        .addGap(18, 18, 18)
+                        .addComponent(ClearFieldsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(304, 304, 304)
                         .addComponent(SaveSelectedCategoryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(CategoryTableScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 676, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ArticlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -196,7 +242,8 @@ public class ManageCategoriesDialog extends javax.swing.JDialog implements BaseV
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(ContentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(SaveSelectedCategoryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(DeleteSelectedCategoryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(DeleteSelectedCategoryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ClearFieldsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(CategoryTableScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -221,8 +268,19 @@ public class ManageCategoriesDialog extends javax.swing.JDialog implements BaseV
     }// </editor-fold>//GEN-END:initComponents
 
     private void DeleteSelectedCategoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteSelectedCategoryButtonActionPerformed
-
+        if (this.SelectedCategory != null)
+        {
+            
+        }
     }//GEN-LAST:event_DeleteSelectedCategoryButtonActionPerformed
+
+    private void ClearFieldsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearFieldsButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ClearFieldsButtonActionPerformed
+
+    private void OkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkButtonActionPerformed
+        
+    }//GEN-LAST:event_OkButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -279,6 +337,7 @@ public class ManageCategoriesDialog extends javax.swing.JDialog implements BaseV
     private javax.swing.JTextField CategoryNameTextField;
     private javax.swing.JTable CategoryTable;
     private javax.swing.JScrollPane CategoryTableScrollPane;
+    private javax.swing.JButton ClearFieldsButton;
     private javax.swing.JPanel ContentPanel;
     private javax.swing.JButton DeleteSelectedCategoryButton;
     private javax.swing.JButton OkButton;
